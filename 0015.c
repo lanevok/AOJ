@@ -20,6 +20,7 @@ int main(){
   int a_len,b_len,max_len;
   int of_flag=0,st_flag=0,st_flag2=0;
   int s,t,u,ee;
+  //  int q;
   
   scanf("%d",&n);
   for(j=0;j<n;j++){
@@ -105,6 +106,11 @@ int main(){
 	}
 	f[ee]=0;
 	printf("%s\n",f);
+
+	//elements check
+	//	for(q=0;q<=ee;q++){
+	//	  printf("f[%d]=%c\n",q,f[q]);
+	//	}
       }
       st_flag2=0;
     }
