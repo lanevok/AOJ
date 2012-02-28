@@ -1,23 +1,14 @@
 #include<stdio.h>
 
-int f(unsigned long long int s){
-  unsigned long long int r;
-  
-  if(s==0){
-    return 1;
-  }
-  else{
-    r=s*f(s-1);
-    return r;
-  }
-}
-
 int main(){
   int n;
-  unsigned long long int r;
+  unsigned long long int r=1;
   
   scanf("%d",&n);
-  r=f(n);
+  while(n){
+    r=r*n;
+    n--;
+  }
   printf("%lld\n",r);
   return 0;
 }

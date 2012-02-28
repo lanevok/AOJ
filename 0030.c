@@ -4,7 +4,6 @@
 int t[11];
 int cnt;
 int n,s;
-//int flg=0;
 
 int sum(int k){
   int i,s=0;
@@ -15,16 +14,12 @@ int sum(int k){
 }
 
 void backtrack(int i,int k){
-  //  flg++;
-  //  if(flg>20)
-  //   exit(1);
-  //  printf("Call:[%d,%d]\n",i,k);
+
   if(i==10){
     if(k==n){
       if(s==sum(k))
 	cnt++;
     }
-    //    puts("return");
     return;
   }
   else{
@@ -32,7 +27,6 @@ void backtrack(int i,int k){
     t[k]=i;
     backtrack(i+1,k+1);
   }
-  //  puts("fall");
 }
 
 int main(void){

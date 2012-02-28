@@ -1,5 +1,3 @@
-//AOJ0015:Wrong Answer
-
 #include<stdio.h>
 #include<string.h>
 
@@ -14,16 +12,29 @@ int calculate(int x, int y){
 }
 
 int main(){
-  char a[81],b[81];
-  int c[80],d[80];
-  int e[80];
+  char a[1000],b[1000];
+  int c[1000],d[1000];
+  int e[1000];
+  char f[1000];
   int i,j,n;
   int a_len,b_len,max_len;
   int of_flag=0,st_flag=0,st_flag2=0;
-  int s,t,u;
+  int s,t,u,ee;
   
   scanf("%d",&n);
   for(j=0;j<n;j++){
+
+    //init
+    for(i=0;i<1000;i++){
+      a[i]=0;
+      b[i]=0;
+      c[i]=0;
+      d[i]=0;
+      e[i]=0;
+      f[i]=0;
+    }
+    ee=0;
+
     scanf("%s",a);
     scanf("%s",b);
     
@@ -89,12 +100,13 @@ int main(){
 	  }
 	}
 	for(t=s;t<80;t++){
-	  printf("%d",e[t]);
+	  f[ee]=e[t]+'0';
+	  ee++;
 	}
-	printf("\n");
+	f[ee]=0;
+	printf("%s\n",f);
       }
       st_flag2=0;
-
     }
   }
   return(0);

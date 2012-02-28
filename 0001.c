@@ -24,4 +24,3 @@ int main(void){
   printf("%d\n%d\n%d\n",best[0],best[1],best[2]);
   return(0);
 }
-  

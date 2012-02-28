@@ -1,19 +1,29 @@
 #include<stdio.h>
 
+int p[10000];
+int pp=1;
+
 int prime(int n){
   int i;
   
-  if((n!=2 && n%2==0)||n==1){
+  if(n<=1||n==4){
     return 0;
   }
-  for(i=3;i<n;i++){
-    if(n%i==0){
-      return 0;
-    }
-    if(n/2<i){
+  else if(n==2||n==3){
+    return 1;
+  }
+  else if(n%2==0){
+    return 0;
+  }
+  for(i=0;i<pp;i++){
+    if(n>=p[i]){
       break;
     }
+    if(n%p[i]==0){
+      return 0;
+    }
   }
+  p[pp++]=n;
   return 1;
 }
 
@@ -22,8 +32,11 @@ int main(){
   int a[10000];
   int b[10000];
   int c[10000];
+
+  p[0]=3;
   
   while(scanf("%d",&n)!=EOF){
+/*
     for(i=1;i<=n;i++){
       a[i-1]=i;
       b[i-1]=n-i+1;
@@ -40,6 +53,8 @@ int main(){
       }
     }
     printf("%d\n",r);
+*/
+    printf("%d\n",prime(n));
   }
   return 0;
 }
