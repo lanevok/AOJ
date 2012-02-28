@@ -17,14 +17,12 @@ int main(void){
     a=max;
     b=min;
     while(1){
-      //      printf("s: a=%d b=%d r1=%d r2=%d\n",a,b,r1,r2);
       r1=a/b;
       r2=a%b;
       if(r2==0){
 	result=b;
 	break;
       }
-      //      printf("g: a=%d b=%d r1=%d r2=%d\n",a,b,r1,r2);
       a=b;
       b=r2;
     }
