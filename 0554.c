@@ -1,14 +1,1 @@
-#include<stdio.h>
-
-int main(){
-  int m,c,i=4,s=0;
-  
-  while(i--){
-    scanf("%d",&c);
-    s+=c;
-  }
-  m=s/60;
-  c=s-(m*60);
-  printf("%d\n%d\n",m,c);
-  return 0;
-}
+c,s,i=4;main(){while(i--){scanf("%d",&c);s+=c;}c=s/60;printf("%d\n%d\n",c,s-(c*60));exit(0);}
