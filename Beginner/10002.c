@@ -1,2 +1,1 @@
-#include<stdio.h>
-int main(){int a,b;scanf("%d%d",&a,&b);printf("%d %d\n",a*b,2*(a+b));return(0);}
+main(a,b){scanf("%d%d",&a,&b);printf("%d %d\n",a*b,2*(a+b));exit(0);}

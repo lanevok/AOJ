@@ -1,11 +1,1 @@
-#include<stdio.h>
-int main(){
-  double a1,b1;
-  int a2,b2;
-  scanf("%lf%lf",&a1,&b1);
-  a2=a1;b2=b1;
-  printf("%d ",a2/b2);
-  printf("%d ",a2%b2);
-  printf("%.5f\n",a1/b1);
-  return 0;
-}
+main(a,b){scanf("%d%d",&a,&b);printf("%d %d %f\n",a/b,a%b,1.0*a/b);exit(0);}

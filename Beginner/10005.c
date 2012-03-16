@@ -1,2 +1,1 @@
-#include<stdio.h>
-int main(){int i;for(i=0;i<1000;i++)printf("Hello World\n");return 0;}
+main(i){for(;i<1001;i++)printf("Hello World\n");exit(0);}
