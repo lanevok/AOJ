@@ -8,7 +8,7 @@ int main(){
     scanf("%d %c %d",&a,&c,&b);
 
     if(c=='?')
-      break;
+      return 0;
 
     else if(c=='+')
       printf("%d\n",a+b);
@@ -19,5 +19,4 @@ int main(){
     else if(c=='/')
       printf("%d\n",a/b);
   }
-  return 0;
 }

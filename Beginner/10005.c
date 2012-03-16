@@ -1,1 +1,1 @@
-main(i){for(;i<1001;i++)printf("Hello World\n");exit(0);}
+main(i){for(;i<1001;i++)puts("Hello World");exit(0);}
