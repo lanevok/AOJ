@@ -9,9 +9,8 @@ public class Main {
 	int n = stdIn.nextInt();
 	TreeSet s = new TreeSet();
 	
-	for(int i=0;i<n;i++) {
+	for(int i=0;i<n;i++)
 	    s.add(stdIn.nextInt());
-	}
 	
 	int q = stdIn.nextInt();
 	int cnt = 0;
@@ -20,6 +19,7 @@ public class Main {
 	    if(s.contains(stdIn.nextInt()))
 		cnt++;
 	}
+
 	System.out.println(cnt);
     }
 }

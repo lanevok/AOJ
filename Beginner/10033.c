@@ -15,7 +15,7 @@ int main(){
 
     else if(strcmp(ope,"push")==0){
       scanf("%d",&y);
-      getchar();         // space through
+      getchar();
       s[y][d[y]++]=getchar();
     }
 

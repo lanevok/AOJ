@@ -3,33 +3,28 @@
 #include<ctype.h>
 
 int main(){
-  char b[100000];
+  char b[10000];
   char a[]="abcdefghijklmnopqrstuvwxyz";
-  int c[26];
-  int n,i;
+  int c[26]={};
+  int n,i=0;
   
-  for(i=0;i<26;i++){
-    c[i]=0;
-  }
-  i=0;
   while(1){
     b[i]=getchar();
-    if(b[i]==EOF){
+    if(b[i]==EOF)
       break;
-    }
     i++;
   }
   n=strlen(b);
+
   for(i=0;i<n;i++){
-    if(isupper(b[i])){
+    if(isupper(b[i]))
       b[i]=tolower(b[i]);
-    }
-    if(islower(b[i])){
+    if(islower(b[i]))
       c[b[i]-'a']++;
-    }
   }
-  for(i=0;i<26;i++){
+
+  for(i=0;i<26;i++)
     printf("%c : %d\n",a[i],c[i]);
-  }
+
   return 0;
 }

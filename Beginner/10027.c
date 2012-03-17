@@ -11,17 +11,16 @@ int main(){
     scanf("%s",t);
     scanf("%s",h);
     f=strcmp(t,h);
-    if(f>0){
-      tp=tp+3;
-    }
-    else if(f<0){
-      hp=hp+3;
-    }
+    if(f>0)
+      tp+=3;
+    else if(f<0)
+      hp+=3;
     else{
       tp++;
       hp++;
     }
   }
   printf("%d %d\n",tp,hp);
+
   return 0;
 }

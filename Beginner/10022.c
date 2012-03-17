@@ -4,7 +4,7 @@
 
 char s[10000];
 
-void min(){
+void alpha(){
   int i,len=strlen(s);
 
   for(i=0;i<len;i++)
@@ -12,7 +12,7 @@ void min(){
 }
 
 int main(){
-  char t[10000];  //target
+  char t[10000];
   int cnt=0;
 
   scanf("%s",t);
@@ -22,7 +22,7 @@ int main(){
     if(strcmp(s,"END_OF_TEXT")==0)
       break;
 
-    min();
+    alpha();
     if(strcmp(s,t)==0)
       cnt++;
   }
