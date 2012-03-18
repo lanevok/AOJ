@@ -29,12 +29,7 @@ public class Main {
 	while(stdIn.hasNext()){
 	    int n = stdIn.nextInt();
 	    int cnt = 0;
-	    
-	    if(n<2){
-		System.out.println("0");
-		continue;
-	    }
-	    
+	    	    
 	    for(int i=0;i<=n;i++){
 		if(primes[i]){
 		    cnt++;
