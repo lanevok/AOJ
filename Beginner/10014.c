@@ -1,10 +1,9 @@
 #include<stdio.h>
 
 int main(){
-  int h,w,i,j,c;
+  int h,w,i,j;
 
   while(1){
-    c=1;
     scanf("%d%d",&h,&w);
 
     if(!h&&!w)
@@ -12,18 +11,11 @@ int main(){
 
     for(i=0;i<h;i++){
       for(j=0;j<w;j++){
-	if(c%2==1)
+	if((i+j)%2==0)
 	  printf("#");
 	else
 	  printf(".");
-
-	c++;
       }
-      if(i%2==0)
-	c=2;
-      else
-	c=1;
-
       printf("\n");
     }      
     printf("\n");

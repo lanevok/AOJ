@@ -2,6 +2,15 @@
 import java.io.InputStreamReader;
 
 public class Main {
+
+	/*
+	 * ICPC Domestic 2011 Problem B
+	 * 
+	 * 2011年のICPC国内予選B問題。
+	 * ソースコードはチームで作成。
+	 * 
+	 */
+
     public static void main(String[] args) throws IOException {		
 	InputStreamReader reader = new InputStreamReader(System.in);
 	int key,i,a[];
