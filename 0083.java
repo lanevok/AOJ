@@ -2,93 +2,46 @@ import java.util.Scanner;
 
 public class Main {
     
+    static boolean pos(int y1, int m1, int d1, int y2, int m2, int d2){
+	
+	if(y1<y2){
+	    return true;
+	}
+	else if(y1==y2){
+	    if(m1<m2){
+		return true;
+	    }
+	    else if(m1==m2){
+		if(d1<=d2){
+		    return true;
+		}
+	    }
+	}
+	return false;
+    }
+    
     public static void main(String[] args) {
 	Scanner stdIn = new Scanner(System.in);
 	
 	while(stdIn.hasNext()){
-	    int year = stdIn.nextInt();
-	    int month = stdIn.nextInt();
-	    int day = stdIn.nextInt();
+	    int y = stdIn.nextInt();
+	    int m = stdIn.nextInt();
+	    int d = stdIn.nextInt();
 	    
-	    if(year<=1867){
+	    if(pos(y,m,d,1868,9,7)){
 		System.out.println("pre-meiji");
 	    }
-	    else if(1869<=year&&year<=1911){
-		System.out.println("meiji "+(year-1867)+" "+month+" "+day);
+	    else if(pos(y,m,d,1912,7,29)){
+		System.out.println("meiji "+(y-1867)+" "+m+" "+d);
 	    }
-	    else if(1913<=year&&year<=1925){
-		System.out.println("taisho "+(year-1911)+" "+month+" "+day);
+	    else if(pos(y,m,d,1926,12,24)){
+		System.out.println("taisho "+(y-1911)+" "+m+" "+d);
 	    }
-	    else if(1927<=year&&year<=1988){
-		System.out.println("showa "+(year-1925)+" "+month+" "+day);
+	    else if(pos(y,m,d,1989,1,7)){
+		System.out.println("showa "+(y-1925)+" "+m+" "+d);
 	    }
-	    else if(1990<=year){
-		System.out.println("heisei "+(year-1988)+" "+month+" "+day);
-	    }
-	    
-	    else if(year==1868){
-		if(month>9){
-		    System.out.println("meiji 1 "+month+" "+day);
-		}
-		else if(month==9){
-		    if(day>=8){
-			System.out.println("meiji 1 "+month+" "+day);
-		    }
-		    else{
-			System.out.println("pre-meiji");
-		    }
-		}
-		else{
-		    System.out.println("pre-meiji");
-		}
-	    }
-	    else if(year==1912){
-		if(month>7){
-		    System.out.println("taisho 1 "+month+" "+day);
-		}
-		else if(month==7){
-		    if(day>=30){
-			System.out.println("taisho 1 "+month+" "+day);
-		    }
-		    else{
-			System.out.println("meiji "+(year-1867)+" "+month+" "+day);
-		    }
-		}
-		else{
-		    System.out.println("meiji "+(year-1867)+" "+month+" "+day);
-		}
-	    }
-	    else if(year==1926){
-		if(month>12){
-		    System.out.println("showa 1 "+month+" "+day);
-		}
-		else if(month==12){
-		    if(day>=25){
-			System.out.println("showa 1 "+month+" "+day);
-		    }
-		    else{
-			System.out.println("taisho "+(year-1911)+" "+month+" "+day);
-		    }
-		}
-		else{
-		    System.out.println("taisho "+(year-1911)+" "+month+" "+day);
-		}
-	    }
-	    else if(year==1989){
-		if(month>1){
-		    System.out.println("heisei 1 "+month+" "+day);
-		}
-		else if(month==1){
-		    if(day>=8){
-			System.out.println("heisei 1 "+month+" "+day);
-		    }
-		    else{
-			System.out.println("showa "+(year-1925)+" "+month+" "+day);
-		    }
-		}
-		else{
-		    System.out.println("showa "+(year-1925)+" "+month+" "+day);
-		}
+	    else{
+		System.out.println("heisei "+(y-1988)+" "+m+" "+d);
 	    }
 	}
     }
