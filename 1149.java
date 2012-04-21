@@ -72,6 +72,7 @@ public class Main {
             sl[1][0]=sl[0][0];
             sl[1][1]=sl[0][1]-data[idx].se[1];
             if(sl[1][1]<0){
+                // 絶対値を取る
                 sl[1][1]*=-1;
             }
             sl[1][1]+=data[idx].nw[1];      // 北西基準点の加算
@@ -98,32 +99,35 @@ public class Main {
     static void cutMission(int idx, int k){
         // カット端点座標の入れ替え(整列:[1]の値で昇順にする)
         if(sl[0][1]>sl[1][1]){
+            // 東西方向
             int tmp = sl[0][1];
             sl[0][1] = sl[1][1];
             sl[1][1] = tmp;
         }
         if(sl[0][0]>sl[1][0]){
+            // 南北方向
             int tmp = sl[0][0];
             sl[0][0] = sl[1][0];
             sl[1][0] = tmp;
         }
          
-        // ケーキiの作成(南東点はケーキpから引き継ぎ)
-        data[k].num = k+1;
+        // ケーキkの作成(南東点はケーキpから引き継ぎ)
+        data[k].num = k+1;          // 個数より大きい値で仮識別番号設定
         data[k].nw[0] = sl[0][0];
         data[k].nw[1] = sl[0][1];
         data[k].se[0] = data[idx].se[0];
         data[k].se[1] = data[idx].se[1];
          
-        // ケーキpの縮小更新(北西点は保持)
-        data[idx].num = k+2;        // 仮に一番大きい値を取る(ケーキ個数+1)
+        // ケーキp(idx)の縮小更新(北西点は保持)
+        data[idx].num = k+2;        // 個数より大きい値で仮識別番号設定
         data[idx].se[0] = sl[1][0];
         data[idx].se[1] = sl[1][1];
          
-        // 新しく生成されたケーキ2つの大きさを比較し識別番号を設定
+        // 新しく生成されたケーキ2つの大きさを比較
         data[idx].area = areaCalc(idx);
         data[k].area = areaCalc(k);
         if(data[idx].area<data[k].area){
+            // 必要であれば番号の入れ替え
             int tmp = data[idx].num;
             data[idx].num = data[k].num;
             data[k].num = tmp;
