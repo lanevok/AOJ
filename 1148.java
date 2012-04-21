@@ -14,8 +14,7 @@ public class Main {
             int r = stdIn.nextInt();
             int[][] r_rec = new int[r][4];
             for(int i=0;i<r;i++){
-                for(int j=0;j<4;j++){
-                     
+                for(int j=0;j<4;j++){                     
                     r_rec[i][j] = stdIn.nextInt();
                 }
             }
