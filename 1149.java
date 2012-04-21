@@ -24,16 +24,13 @@ public class Main {
         // 北西座標の設定
         int i = data[idx].nw[0];
         int j = data[idx].nw[1];
-//      System.out.println("カット端点探索スタート地点は("+data[idx].nw[0]+","+data[idx].nw[1]+")");
         int cnt = 0;
-        int vec = 0;        // 進行方向管理
+        int vec = 0;     // 進行方向管理
         while(true){
             cnt++;
-//          System.out.println("j = "+j+" , vec = "+vec);
             // 右へ
             if(vec==0){
                 j++;
-//              System.out.println("!"+data[idx].se[1]);
                 // 端に到達時、進行方向切換
                 if(j==data[idx].se[1]){
                     vec++;
@@ -82,7 +79,6 @@ public class Main {
         else{
             // 南北方向のカット([1]座標は同値)
             sl[1][1]=sl[0][1];
-//          System.out.println("!!!!"+sl[0][0]+"-"+data[idx].se[0]);
             sl[1][0]=sl[0][0]-data[idx].se[0];
             if(sl[1][0]<0){
                 sl[1][0]*=-1;
@@ -102,7 +98,6 @@ public class Main {
     static void cutMission(int idx, int k){
         // カット端点座標の入れ替え(整列:[1]の値で昇順にする)
         if(sl[0][1]>sl[1][1]){
-//          System.out.println("@@@");
             int tmp = sl[0][1];
             sl[0][1] = sl[1][1];
             sl[1][1] = tmp;
@@ -125,27 +120,20 @@ public class Main {
         data[idx].se[0] = sl[1][0];
         data[idx].se[1] = sl[1][1];
          
-//      System.out.println("カットしたケーキその1！ ("+data[idx].nw[0]+","+data[idx].nw[1]+") , ("+data[idx].se[0]+","+data[idx].se[1]+")");
-//      System.out.println("カットしたケーキその2！ ("+data[k].nw[0]+","+data[k].nw[1]+") , ("+data[k].se[0]+","+data[k].se[1]+")");
-         
         // 新しく生成されたケーキ2つの大きさを比較し識別番号を設定
         data[idx].area = areaCalc(idx);
         data[k].area = areaCalc(k);
         if(data[idx].area<data[k].area){
-//          System.out.println("番号を入れ替えました");
             int tmp = data[idx].num;
             data[idx].num = data[k].num;
             data[k].num = tmp;
         }
-         
-//      System.out.println("識別番号 ("+data[k].nw[0]+","+data[k].nw[1]+")が"+data[k].num+" で ("+data[idx].nw[0]+","+data[idx].nw[1]+")が"+data[idx].num);
          
         // 識別番号の整列と再設定
         int cnt = 0;
         int[] element = new int[k+1];
         for(int i=0;i<=k;i++){
             element[i] = data[i].num;
-//          System.out.println("*"+data[i].num+" ... ("+data[i].nw[0]+","+data[i].nw[1]+") , ("+data[i].se[0]+","+data[i].se[1]+")");
         }
         Arrays.sort(element);
         for(int i=0;i<=k;i++){
@@ -155,7 +143,6 @@ public class Main {
                     break;
                 }
             }
-//          System.out.println(cnt+1+"番 ("+data[j].nw[0]+","+data[j].nw[1]+") , ("+data[j].se[0]+","+data[j].se[1]+")");
             data[j].num = ++cnt;
         }
     }
@@ -185,12 +172,8 @@ public class Main {
             data[0].se[1] = w;
             data[0].area = areaCalc(0);
              
-//          System.out.println("----------------------------------");
-             
             // カット繰り返し
             for(int i=1;i<=n;i++){
-//              System.out.println();
-//              System.out.println(i+"回目のカットを実行します");
                 p = stdIn.nextInt();
                 s = stdIn.nextInt();
                  
@@ -201,13 +184,9 @@ public class Main {
                         idx = j;
                         break;
                     }
-                }
-                 
-//              System.out.println("カットされるケーキ情報 ("+data[idx].nw[0]+","+data[idx].nw[1]+") , ("+data[idx].se[0]+","+data[idx].se[1]+")");
-                 
+                }                 
                 // カット座標判別
                 cutLine(idx);
-//              System.out.println("　カット座標は("+sl[0][0]+","+sl[0][1]+") , ("+sl[1][0]+","+sl[1][1]+")");
                 // カット実行 (i+1個目の作成)
                 cutMission(idx,i);
             }
