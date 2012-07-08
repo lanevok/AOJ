@@ -1,9 +1,9 @@
 ﻿import java.util.Scanner;
- 
+  
 public class Main {
 
-    // Wrong Answer
- 
+	// TLE
+  
     static int start, goal;             // スタート都市、ゴール都市
     static int n_city, m_road;      // 都市の数、道の数
     static int[][] road_dist;           // 道の距離情報
@@ -11,12 +11,15 @@ public class Main {
     static double[][][] city;           // ダイクストラ　最短時間保管表
     static boolean[][][] enter;     // ダイクストラ　最短時間確定
     static final int speed_law = 30;
-     
+    static double ans2;
+    static int[][][] pre;
+      
     // ダイクストラアルゴリズム
     static double Dijkstra(){
         // 初期設定。最短時間をMAX値で初期化。
         city = new double[n_city+1][n_city+1][speed_law+1];
         enter = new boolean[n_city+1][n_city+1][speed_law+1];
+//        pre = new int[n_city+1][n_city+1][speed_law+1];
         for(int i=0;i<=n_city;i++){
             for(int j=0;j<=n_city;j++){
                 for(int k=0;k<=speed_law;k++){
@@ -44,7 +47,9 @@ public class Main {
             }
             // 表において探した最も最短時間な状態遷移が、
             //      スタート→ゴールで速度が1の場合は解が得られる
-            if(x==start&&y==goal&&z==1){
+//            System.out.println("time="+city[x][y][z]);
+            if(y==goal&&z==1){
+                ans2 = Math.min(ans2, city[x][y][z]);
                 return city[x][y][1];
             }
             // 最短時間の更新が一度もされない→状態遷移がすべて確定してしまった
@@ -53,10 +58,13 @@ public class Main {
                 break;
             }
             enter[x][y][z] = true;      // 探した最短時間状態遷移を確定する
-//          System.out.println("enter : x="+x+", y="+y+", z="+z+" time="+city[x][y][z]);
+//          System.out.println("enter : x="+x+", y="+y+", z="+z+" pre="+pre[x][y][z]+" time="+city[x][y][z]);
             // 確定した状態遷移から移動できる都市を更新しにいく (yからnexの移動)
             for(int nex=1;nex<=n_city;nex++){        // nex = 遷移先(次)
                 // 速度3パターン(-1,0,1)、zは元の速度、spdは遷移時の速度
+                if(x==nex){
+                    continue;
+                }
                 for(int spd=z-1;spd<=z+1;spd++){
                     // スピード負値、制限速度オーバー、道路がない　場合は除外
                     if(spd<=0||spd>speed_limit[y][nex]||road_dist[y][nex]==Double.MAX_VALUE){
@@ -65,19 +73,26 @@ public class Main {
                     // スタート地点から出る道とゴール地点に到達する道は必ず速度1 (この問題においての超重要点)
                     //  さらには今来た道なら引き返しなのでNG(x->y y->nex(x) ... x=nex=start)
                     //      さらには状態遷移が決定していれば更新の必要性はない
-                    if(((y==start||nex==goal)&&spd!=1)||start==nex||enter[x][nex][spd]){
+                    if(x==start&&y==start&&z==1&&spd!=1){
 //                      System.out.println("s="+start+" g="+goal+" y="+y+" z="+z+" nex="+nex+" spd="+spd);
                         continue;
                     }
-//                  System.out.println("connect : y="+y+", nex="+nex+", spd="+spd);
+//                  System.out.println("connect : x="+x+" y="+y+", nex="+nex+", spd="+spd);
                     // 時間 = 距離 / 速度
-                    city[x][nex][spd] = Math.min(city[x][y][z] + road_dist[y][nex]*1.0/spd , city[x][nex][spd]);
+                  if(city[y][nex][spd]>city[x][y][z] + road_dist[y][nex]*1.0/spd){
+                      city[y][nex][spd] = city[x][y][z] + road_dist[y][nex]*1.0/spd; 
+                  }
+                                   
+                   
+                   
+//                    city[x][nex][spd] = Math.min(city[x][y][z] + road_dist[y][nex]*1.0/spd , city[x][nex][spd]);
                 }
             }
         }
+//        System.out.println(ans2);
         return -1;
     }
-     
+      
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
         while(true){
@@ -98,9 +113,10 @@ public class Main {
                 road_dist[x][y] = road_dist[y][x] = d;
                 speed_limit[x][y] = speed_limit[y][x] = c;
             }
+            ans2 = 10000000;
             double ans = Dijkstra();
-            if(ans!=-1){
-                System.out.printf("%.5f\n",ans);
+            if(ans2!=10000000){
+                System.out.printf("%.5f\n",ans2);
             }
             else{
                 System.out.println("unreachable");
